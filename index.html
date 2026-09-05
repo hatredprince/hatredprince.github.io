@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PALACHER — portfolio">
+<title>PALACHER — Vibecoding</title>
+<style>
+:root{
+  --bg:#08090b;
+  --panel:#0d0f12;
+  --panel2:#111419;
+  --text:#f2f4f7;
+  --muted:#8b929d;
+  --line:#20242b;
+  --accent:#8b5cf6;
+  --accent2:#a78bfa;
+  --green:#4ade80;
+  --max:1050px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,#000,transparent 75%);
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+nav{
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);position:relative;z-index:2;
+}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:18px}
+.logo span{color:var(--accent2)}
+.navlinks{display:flex;gap:26px;color:var(--muted);font-size:14px}
+.navlinks a{transition:.2s}
+.navlinks a:hover{color:var(--text)}
+.hero{
+  min-height:650px;display:grid;align-items:center;
+  padding:95px 0 110px;position:relative;
+}
+.hero:after{
+  content:"";position:absolute;width:430px;height:430px;right:-120px;top:80px;
+  background:var(--accent);filter:blur(150px);opacity:.10;pointer-events:none;
+}
+.eyebrow{
+  color:var(--green);font:500 13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+  margin-bottom:22px;
+}
+.eyebrow:before{content:"~/";color:var(--accent2)}
+h1{
+  font-size:clamp(58px,11vw,120px);line-height:.88;letter-spacing:-.075em;
+  max-width:850px;margin-bottom:30px;
+}
+.gradient{
+  background:linear-gradient(100deg,#fff 15%,#b8a3ff 65%,#8b5cf6);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{max-width:620px;color:var(--muted);font-size:18px}
+.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.btn{
+  border:1px solid var(--line);padding:11px 18px;border-radius:8px;
+  font-size:14px;background:var(--panel);transition:.2s;
+}
+.btn.primary{background:var(--text);color:#090a0c;border-color:var(--text)}
+.btn:hover{transform:translateY(-2px);border-color:#383e47}
+section{padding:105px 0;border-top:1px solid var(--line)}
+.sectionhead{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:42px;gap:20px;
+}
+.sectionhead h2{font-size:27px;letter-spacing:-.04em}
+.sectionhead span{
+  color:var(--muted);font:12px ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.aboutgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px}
+.about p{color:#b0b6bf;font-size:17px;max-width:650px}
+.about p+p{margin-top:18px}
+.terminal{
+  background:#090b0e;border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+.termbar{height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 13px;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#30353d}
+.termcode{padding:20px;font:13px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace;color:#aeb5c0}
+.termcode .purple{color:#b59cff}.termcode .green{color:#68e99a}.termcode .gray{color:#68717e}
+.stack{display:flex;flex-wrap:wrap;gap:10px}
+.tag{
+  padding:9px 13px;border:1px solid var(--line);border-radius:7px;
+  color:#c3c8d0;background:var(--panel);font:13px ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.project{
+  min-height:220px;padding:25px;background:var(--panel);border:1px solid var(--line);
+  border-radius:11px;display:flex;flex-direction:column;transition:.25s;
+}
+.project:hover{transform:translateY(-4px);border-color:#373d47;background:var(--panel2)}
+.projecttop{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+.projectnum{color:var(--accent2);font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+.arrow{color:var(--muted);font-size:20px}
+.project h3{font-size:21px;letter-spacing:-.03em;margin-bottom:8px}
+.project p{color:var(--muted);font-size:14px}
+.projectfoot{margin-top:auto;padding-top:22px;color:#747c87;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+.contactbox{
+  border:1px solid var(--line);background:var(--panel);border-radius:12px;
+  padding:40px;display:flex;justify-content:space-between;align-items:center;gap:30px;
+}
+.contactbox h3{font-size:28px;letter-spacing:-.04em}
+.contactbox p{color:var(--muted);margin-top:5px}
+footer{
+  padding:30px 0 45px;color:#666d77;font-size:12px;
+  display:flex;justify-content:space-between;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.cursor{display:inline-block;width:8px;height:18px;background:var(--accent2);vertical-align:-3px;margin-left:5px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.reveal{opacity:0;transform:translateY(18px);animation:show .7s ease forwards}
+.delay{animation-delay:.12s}
+@keyframes show{to{opacity:1;transform:none}}
+@media(max-width:760px){
+  .container{width:min(calc(100% - 28px),var(--max))}
+  nav{height:64px}.navlinks{gap:14px;font-size:12px}
+  .navlinks a:nth-child(2){display:none}
+  .hero{min-height:570px;padding:75px 0}
+  h1{font-size:clamp(54px,18vw,88px)}
+  .hero p{font-size:16px}
+  section{padding:75px 0}
+  .aboutgrid,.projects{grid-template-columns:1fr}
+  .aboutgrid{gap:35px}
+  .contactbox{padding:28px;display:block}
+  .contactbox .btn{display:inline-block;margin-top:22px}
+  footer{gap:15px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<nav>
+  <a class="logo" href="#">Palacher<span>.</span></a>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="eyebrow reveal">godlike / mister</div>
+    <h1 class="reveal delay">Power.<br><span class="gradient">Mind.</span><br>Beauty.</h1>
+    <p class="reveal delay">Начинающий разработчик. Лень учиться программированию, вайбкодинг в крови.</p>
+    <div class="actions reveal delay">
+      <a class="btn primary" href="#projects">Посмотреть проекты ↗</a>
+      <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="sectionhead"><h2>About me</h2><span>01 / 04</span></div>
+  <div class="aboutgrid">
+    <div class="about">
+      <p>Привет. Я <strong>Palacher</strong> — господин этой вселенной.</p>
+      <p>Мне ничего неинтересно, я на всё клал болт и буду продолжать это делать.</p>
+    </div>
+    <div class="terminal">
+      <div class="termbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+      <div class="termcode">
+        <span class="gray">$ whoami</span><br>
+        <span class="green">palacher1337</span><br><br>
+        <span class="gray">$ status</span><br>
+        <span class="purple">learning</span> → AI<br>
+        <span class="purple">building</span> → universe<br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="sectionhead"><h2>Tech stack</h2><span>02 / 04</span></div>
+  <div class="stack">
+    <span class="tag">Python</span>
+    <span class="tag">Claude (C++ / Java)</span>
+    <span class="tag">GitHub</span>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sectionhead"><h2>Selected projects</h2><span>03 / 04</span></div>
+  <div class="projects">
+    <a class="project" href="#">
+      <div class="projecttop"><span class="projectnum">PROJECT_01</span><span class="arrow">↗</span></div>
+      <div>
+        <h3>Satanic</h3>
+        <p>Программа для стресс-тестинга веб-сайтов.</p>
+      </div>
+      <div class="projectfoot">C++</div>
+    </a>
+    <a class="project" href="#">
+      <div class="projecttop"><span class="projectnum">PROJECT_02</span><span class="arrow">↗</span></div>
+      <div>
+        <h3>Comphunt</h3>
+        <p>RAT программа для управления чужим ПК и его уничтожения.</p>
+      </div>
+      <div class="projectfoot">C++</div>
+    </a>
+    <a class="project" href="#">
+      <div class="projecttop"><span class="projectnum">PROJECT_03</span><span class="arrow">↗</span></div>
+      <div>
+        <h3>Telegram Raid Botnet</h3>
+        <p>Ботнет для рейда чатов.</p>
+      </div>
+      <div class="projectfoot">PYTHON · TELEGRAM API</div>
+    </a>
+    <a class="project" href="#">
+      <div class="projecttop"><span class="projectnum">PROJECT_04</span><span class="arrow">↗</span></div>
+      <div>
+        <h3>EMPTY</h3>
+        <p>Пока что ничего нет.</p>
+      </div>
+      <div class="projectfoot">IN DEVELOPMENT</div>
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sectionhead"><h2>Contact</h2><span>04 / 04</span></div>
+  <div class="contactbox">
+    <div>
+      <h3>???</h3>
+      <p>Открыт для создания целого ничего</p>
+    </div>
+    <a class="btn primary" href="https://github.com/" target="_blank" rel="noopener">Telegram ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span>© Palacher</span>
+  <span>s0s1</span>
+</footer>
+</div>
+</body>
+</html>
